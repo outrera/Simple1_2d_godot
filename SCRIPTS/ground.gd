@@ -1,0 +1,57 @@
+extends TileMap
+
+onready var ground = get_node("../ground")
+var tile_grass = 0
+var tile_wather = 1
+var tile_tree = 2
+
+func gen_area(tile, n, count_obj_max, x_max, y_max):
+	for count in range(0, n):
+		var count_obj = 0
+		var dir = 0
+		var x = (randi() % x_max)-100
+		var y = (randi() % y_max)-100
+		
+		while count_obj != count_obj_max:	
+			dir = randi()%4
+				
+			if dir == 0:
+				x+=1
+			if dir == 1:
+				x+=-1
+			if dir == 2:
+				y+=1
+			if dir == 3:
+				y+=-1
+				
+			if get_cell(x,y) == tile_grass:
+				set_cell(x,y,tile)	
+			count_obj += 1
+
+
+func gen_forest(n, m, x_max, y_max):
+	gen_area(tile_tree, n, m, x_max, y_max)
+		
+func gen_lakes(n, m, x_max, y_max):
+	gen_area(tile_wather, n, m, x_max, y_max)
+	
+func fill_grass(x1, x2, y1, y2):
+	for x in range(x1, x2):
+		for y in range(y1, y2):
+			ground.set_cell(x, y, tile_grass)
+
+func gen_map(x1, x2, y1, y2):
+	fill_grass(x1, x2, y1, y2)
+	gen_lakes(100,200, x2, y2)
+	gen_forest(100,200, x2, y2)
+	
+func _ready():
+	randomize()
+	gen_map(-128, 384, -256, 256)
+	set_process(true)
+
+func _process(delta):
+	
+	print()
+	
+
