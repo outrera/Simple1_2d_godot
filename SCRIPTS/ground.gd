@@ -9,9 +9,18 @@ func gen_area(tile, n, count_obj_max, x_max, y_max):
 	for count in range(0, n):
 		var count_obj = 0
 		var dir = 0
-		var x = (randi() % x_max)-100
-		var y = (randi() % y_max)-100
+		var x = (randi() % x_max)
+		var y = (randi() % y_max)
+		var z = randi() % 4
+		if z == 1:
+			x = -x
+			y = -y
+		if z == 2:
+			y = -y
+		if z == 3:
+			x = -x
 		
+			
 		while count_obj != count_obj_max:	
 			dir = randi()%4
 				
@@ -28,7 +37,6 @@ func gen_area(tile, n, count_obj_max, x_max, y_max):
 				set_cell(x,y,tile)	
 			count_obj += 1
 
-
 func gen_forest(n, m, x_max, y_max):
 	gen_area(tile_tree, n, m, x_max, y_max)
 		
@@ -42,8 +50,8 @@ func fill_grass(x1, x2, y1, y2):
 
 func gen_map(x1, x2, y1, y2):
 	fill_grass(x1, x2, y1, y2)
-	gen_lakes(100,200, x2, y2)
-	gen_forest(100,200, x2, y2)
+	gen_lakes(200,200, x2, y2)
+	gen_forest(200,200, x2, y2)
 	
 func _ready():
 	randomize()
