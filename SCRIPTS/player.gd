@@ -1,7 +1,7 @@
 
 extends KinematicBody2D
 onready var camera = get_node('../main_camera')
-
+onready var pl_sprite = get_node('pl_Sprite')
 const MOTION_SPEED = 190
 
 func _fixed_process(delta):
