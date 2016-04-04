@@ -68,13 +68,8 @@ func fill_grass(x1, x2, y1, y2):
 
 func gen_map(x1, x2, y1, y2):
 	fill_grass(x1, x2, y1, y2)
-<<<<<<< HEAD
 	gen_lakes(200, 200, x2, y2)
 	gen_forest(200, 200, x2, y2)
-=======
-	gen_lakes(200,200, x2, y2)
-	gen_forest(200,200, x2, y2)
->>>>>>> d08e8959aff71b97116311c45611ad1682455d22
 	gen_rocks(200, 20, x2, y2)
 	
 func _ready():
