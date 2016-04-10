@@ -2,9 +2,14 @@
 extends KinematicBody2D
 onready var camera = get_node('../main_camera')
 onready var pl_sprite = get_node('pl_Sprite')
-const MOTION_SPEED = 190
+onready var light1 = get_node('Light2D')
+onready var light2 = get_node('Light2D1')
 
+const MOTION_SPEED = 190
+	
+		
 func _fixed_process(delta):
+	
 	var motion = Vector2()
 	
 	if (Input.is_action_pressed("ui_up")):
@@ -27,9 +32,9 @@ func _fixed_process(delta):
 		Input.is_action_pressed("ui_down") or
 		Input.is_action_pressed("ui_up")):
 		camera.set_pos(get_pos())
-		
-
 
 func _ready():
 	set_fixed_process(true)
+	
+	
 
